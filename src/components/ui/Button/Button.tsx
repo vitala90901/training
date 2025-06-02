@@ -29,8 +29,8 @@ const StyledButton = styled.button<{
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 250ms;
   font-family: ${({ theme }) => theme.typography.fontMain};
-  transition: all 0.2s ease;
   line-height: 1;
 
   ${({ $variant, theme }) => {
@@ -87,7 +87,12 @@ const StyledButton = styled.button<{
       &:hover {
         transform: none;
       }
-    `}
+    `
+  }
+  
+  &:hover {
+    transform: translateY(4px);
+  }
 `;
 
 export const Button = ({

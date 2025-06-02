@@ -3,13 +3,15 @@ export type Colors = {
 	danger: string;
 	success: string,
 	background: string;
+  pageBackground: string;
 	text: string;
 };
 
 export const colors: Colors = {
   primary: '#6366f1',
   danger: '#ef4444',
-  success: '#10b981',
-  background: '#f9fafb',
+  success: '#6359e9',
+  background: '#1d1d41',
+  pageBackground: '#141322',
   text: '#1f2937',
 };
