@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { Header } from '../components/layout/header/Header';
 import { Card } from '../components/ui/Card/Card';
 import { Button } from '../components/ui/Button/Button';
+import { AddTransictionModal } from '../components/modals/AddTransactionModal';
 
 const DashboardWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.pageBackground};
@@ -16,6 +17,7 @@ const DashboardWrapper = styled.div`
 
 export const Dashboard = () => {
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   return (
     <DashboardWrapper className='dashboard'>
@@ -31,13 +33,14 @@ export const Dashboard = () => {
         <Button variant='success' className='income'>
           Доход
         </Button>
-        <Button variant='danger' className='expenditure'>
+        <Button variant='danger' className='expense'>
           Расход
         </Button>
       </div>
 
       <Card title='Последние опереации'>
-        <p>Список транзакций</p>
+        <Button className='open-modal' onClick={() => setIsModalOpen(true)}>Добавить транзакцию</Button>
+        <AddTransictionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}></AddTransictionModal>
       </Card>
     </DashboardWrapper>
   );
