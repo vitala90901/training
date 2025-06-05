@@ -1,4 +1,5 @@
-import { Dialog } from '@radix-ui/react-dialog';
+import React from 'react';
+import styled, { css } from 'styled-components';
 import { TransactionForm } from '../transactions/TransactionForm';
 
 interface AddTransictionModalProps {
@@ -6,16 +7,36 @@ interface AddTransictionModalProps {
   onClose: () => void;
 }
 
-export const AddTransictionModal = ({ isOpen, onClose }: AddTransictionModalProps) => {
-    return (
-    <Dialog.Root open={isOpen}>
-      <Dialog.Overlay className="fixed inset-0 bg-black/50" />
-      <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg">
-        <Dialog.Close onClick={onClose} className="absolute top-4 right-4">
-          ×
-        </Dialog.Close>
-        <TransactionForm onSuccess={onClose} />
-      </Dialog.Content>
-    </Dialog.Root>
+const ModalWrapper = styled.div<{
+  $isOpen: boolean;
+}>`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 500px;
+  width: 500px;
+  background-color: black;
+  padding: 40px;
+  border-radius: 10%;
+  transform: translate(-50%, -50%);
+  ${({ $isOpen }) => {
+    if ($isOpen) {
+      return css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      `
+    } else {
+      return css`display: none;`
+    }
+  }};
+`;
+
+export const AddTransactionModal = ({ isOpen, onClose }: AddTransictionModalProps) => {
+  return (
+    <ModalWrapper $isOpen={isOpen}>
+      <TransactionForm onSuccess={onClose} />
+      <button onClick={onClose}>X</button>
+    </ModalWrapper>
   );
 };
