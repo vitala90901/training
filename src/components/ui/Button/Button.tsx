@@ -40,7 +40,7 @@ const StyledButton = styled.button<{
           background-color: ${theme.colors.danger};
           color: white;
           &:hover {
-            transform: translateY(4px);
+            transform: translateY(2px);
           }
         `;
       case 'success':
@@ -48,7 +48,7 @@ const StyledButton = styled.button<{
           background-color: ${theme.colors.success};
           color: white;
           &:hover {
-            transform: translateY(4px);
+            transform: translateY(2px);
           }
         `;
       case 'text':
@@ -65,6 +65,9 @@ const StyledButton = styled.button<{
         return css`
           background-color: ${theme.colors.primary};
           color: white;
+          &:hover {
+            transform: translateY(2px);
+          }
         `;
     }
   }}

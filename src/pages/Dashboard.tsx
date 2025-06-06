@@ -38,6 +38,19 @@ const TransactionsWrapper = styled.div`
   border-radius: 5%;
 `;
 
+const BtnGroup = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+const FilterButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 230px;
+`;
+
 export const Dashboard = () => {
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -49,14 +62,20 @@ export const Dashboard = () => {
       </HeaderWrapper>
 
       <TransactionsWrapper>
-        <Button variant='success' className='income' size='lg'>
-          Доход
-        </Button>
-        <Button variant='danger' className='expense' size='lg'>
-          Расход
-        </Button>
-        <Button className='open-modal' onClick={() => setIsModalOpen(true)} size='lg'>Добавить транзакцию</Button>
-        <AddTransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <BtnGroup>
+
+          <FilterButtons>
+            <Button variant='success' className='income' size='lg'>
+              Доход
+            </Button>
+            <Button variant='danger' className='expense' size='lg'>
+              Расход
+            </Button>
+          </FilterButtons>
+
+          <Button className='open-modal' onClick={() => setIsModalOpen(true)} size='lg'>Добавить транзакцию</Button>
+          <AddTransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </BtnGroup>
         <TransactionList />
       </TransactionsWrapper>
 

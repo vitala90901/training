@@ -1,91 +1,100 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { Icons } from "../pictures/icons";
 
 interface TransactionProps {
   category: string;
   amount: number;
   type: string;
+  date: string;
 };
 
-const StyledTransaction = styled.div<{ $category: string }>`
+const StyledTransaction = styled.li<{ $type: string }>`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 10px;
-  border-radius: 5%;
+  color: #fff;
   margin-bottom: 20px;
-
-  ${({ $category }) => {
-    switch($category) {
-      case 'Еда':
+  border: 2px solid #ffffff;
+  border-radius: 1em;
+  font-family: ${({ theme }) => theme.typography.fontMain};
+  font-size: 18px;
+  cursor: pointer;
+  ${({ $type }) => {
+    switch( $type ) {
+      case 'expense':
         return css`
-          border: 5px solid #ffc908;
+          border-color: #026f97;
+          &:hover {
+            background-color: #026f97;
+          }
         `;
-      case 'Здоровье':
+      default:
         return css`
-          border: 5px solid #006e04;
-        `;
-      case 'Жильё':
-        return css`
-          border: 5px solid #03c4ff;
-        `;
-      case 'Транспорт':
-        return css`
-          border: 5px solid #323a3d;
-        `;
-      case 'Другое':
-        return css`
-          border: 5px solid #000000;
+          border-color: #6359E9;
+          &:hover {
+            background-color: #6359E9;
+          }
         `;
     }
-  }};
+  }}
+    
 `;
 const StyledCategory = styled.p<{ $category: string }>`
-  ${({ $category }) => {
-    switch($category) {
+  display: flex;
+  align-items: center;
+  width: 120px;
+  }};
+`;
+const StyledDate = styled.div`
+  width: 80px;
+  text-align: center;
+  color: #fff;
+`;
+
+const StyledAmount = styled.p`
+  width: 100px;
+`;
+
+const IconWrapper = styled.div`
+  font-size: 25px;
+  margin-right: 10px;
+`;
+
+const renderIcon = (cat: string) => {
+  switch(cat) {
       case 'Еда':
-        return css`
-          color: #ffc908;
-        `;
+        return <Icons.Transaction.Food />;
       case 'Здоровье':
-        return css`
-          color: #006e04;
-        `;
+        return <Icons.Transaction.Health />;
       case 'Жильё':
-        return css`
-          color: #03c4ff;
-        `;
+        return <Icons.Transaction.House />;
       case 'Транспорт':
-        return css`
-          color: #323a3d;
-        `;
+        return <Icons.Transaction.Transport />;
       case 'Другое':
-        return css`
-          color: #000000;
-        `;
-    }
-  }};
-`;
-const StyledType = styled.p<{ $type: string }>`
-  color: ${({ $type }) => {
-    if ($type === 'expense') {
-      return 'red';
-    } else {
-      return 'green';
-    }
-  }};
-`;
+        return <Icons.Transaction.Other />;
+      default:
+        return <Icons.Transaction.Income />;
+  };
+};
 
-export const Transaction = ({ category, amount, type }: TransactionProps) => {
-
+export const Transaction = ({ category, amount, type, date }: TransactionProps) => {
+  console.log(date);
   return (
-    <StyledTransaction $category={category}>
+    <StyledTransaction $type={type}>
       <StyledCategory $category={category}>
+        <IconWrapper>
+          {renderIcon(category)}
+        </IconWrapper>
         {category}
       </StyledCategory>
-      <StyledType $type={type}>
-        {type === 'expense' ? 'Расход' : 'Доход'}
-      </StyledType>
-      <p>{`${amount} руб`}</p>
+      <StyledAmount>
+        {`${amount} руб`}
+      </StyledAmount>
+      <StyledDate>
+        {date.toString()}
+      </StyledDate>
     </StyledTransaction>
   )
 };

@@ -9,6 +9,7 @@ import { categories } from '../../data/categories';
 
 interface TransactionFormProps {
   onSuccess: () => void;
+  children: React.ReactNode;
 };
 
 type FormData = {
@@ -34,7 +35,43 @@ const schema = yup.object({
   description: yup.string().max(50, 'Максимум 50 символов'),
 });
 
-export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
+const LabelWrapper = styled.div`
+  display: flex;
+  gap: 4px;
+`;
+const StyledLabel = styled.label`
+  display: flex;
+  align-items: center;
+`;
+const ErrorMessage = styled.p`
+  color: red;
+  font-weight: 500;
+  font-size: 12px;
+`;
+const StyledGroup = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  width: 200px;
+  height: 60px;
+`;
+
+const StyledForm = styled.form`
+  border: 2px solid red;
+  font-family: ${({ theme }) => theme.typography.fontMain};
+  font-size: 30px;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
+export const TransactionForm = ({ onSuccess, children }: TransactionFormProps) => {
   const dispatch = useDispatch();
 
   const {
@@ -66,29 +103,13 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
   };
 
   const currentCategories = categories[transactionType];
-
-  const LabelWrapper = styled.div`
-    display: flex;
-    gap: 4px;
-  `;
-  const StyledLabel = styled.label`
-    display: flex;
-    align-items: center;
-  `;
-  const ErrorMessage = styled.p`
-    color: red;
-    font-weight: 500;
-    font-size: 12px;
-  `;
-  const StyledGroup = styled.div`
-    margin-bottom: 10px;
-  `;
-
+  
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      {children}
       <StyledGroup>
-        <label>Тип</label>
         <LabelWrapper>
+          Тип
           <StyledLabel>
             <input
               type="radio"
@@ -165,6 +186,6 @@ export const TransactionForm = ({ onSuccess }: TransactionFormProps) => {
         Добавить транзакцию
       </button>
 
-    </form>
+    </StyledForm>
   );
 }

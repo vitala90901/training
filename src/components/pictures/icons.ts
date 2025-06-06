@@ -1,4 +1,21 @@
-import { FaBorderAll, FaChartLine, FaRegUser, FaCcMastercard, FaDharmachakra, FaExpeditedssl, FaHandsHelping } from "react-icons/fa";
+import { 
+  FaBorderAll,
+  FaChartLine,
+  FaRegUser,
+  FaCcMastercard,
+  FaDharmachakra,
+  FaExpeditedssl,
+  FaHandsHelping,
+} from "react-icons/fa";
+
+import { 
+  MdOutlineFastfood,
+  MdOutlineHealthAndSafety,
+  MdOutlineHouse,
+  MdOutlineEmojiTransportation,
+  MdQuestionMark,
+  MdOutlineAttachMoney,
+} from "react-icons/md";
 
 export const Icons = {
   Header: {
@@ -10,4 +27,12 @@ export const Icons = {
     Security: FaExpeditedssl,
     Help: FaHandsHelping,
   },
+  Transaction: {
+    Food: MdOutlineFastfood,
+    Health: MdOutlineHealthAndSafety,
+    House: MdOutlineHouse,
+    Transport: MdOutlineEmojiTransportation,
+    Other: MdQuestionMark,
+    Income: MdOutlineAttachMoney,
+  }
 };

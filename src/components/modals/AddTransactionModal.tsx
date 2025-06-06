@@ -13,12 +13,12 @@ const ModalWrapper = styled.div<{
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   height: 500px;
   width: 500px;
-  background-color: black;
+  background-color: ${({ theme }) => theme.colors.hoverBackground};
   padding: 40px;
   border-radius: 10%;
-  transform: translate(-50%, -50%);
   ${({ $isOpen }) => {
     if ($isOpen) {
       return css`
@@ -32,11 +32,23 @@ const ModalWrapper = styled.div<{
   }};
 `;
 
+const CloseBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: #1d1d41;
+  position: relative;
+  top: -10px;
+  right: -240px;
+`;
+
 export const AddTransactionModal = ({ isOpen, onClose }: AddTransictionModalProps) => {
   return (
     <ModalWrapper $isOpen={isOpen}>
-      <TransactionForm onSuccess={onClose} />
-      <button onClick={onClose}>X</button>
+      <TransactionForm onSuccess={onClose}>
+        <CloseBtn onClick={onClose}>X</CloseBtn>
+      </TransactionForm>
     </ModalWrapper>
   );
 };
