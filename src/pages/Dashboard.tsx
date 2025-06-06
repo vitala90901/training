@@ -9,11 +9,33 @@ import { TransactionList } from '../components/transactions/TransactionList';
 const DashboardWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.pageBackground};
   display: grid;
-  grid-template-columns: 0.8fr 2.2fr 1fr;
-  gap: 6px;
-  height: 100%;
-  width: 100%;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-areas:
+    "header . card"
+    "header transactions card"
+    "header transactions .";
+  gap: 25px;
+  pading: 20px
+  width: 100vw;
+  height: 100vh;
   margin: 0;
+`;
+
+const HeaderWrapper = styled.div`
+  grid-area: header;
+`;
+
+const CardWrapper = styled.div`
+  grid-area: card;
+  margin-top: 10%;
+`;
+
+const TransactionsWrapper = styled.div`
+  grid-area: transactions;
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: 20px;
+  border-radius: 5%;
 `;
 
 export const Dashboard = () => {
@@ -22,28 +44,27 @@ export const Dashboard = () => {
 
   return (
     <DashboardWrapper className='dashboard'>
-      <Header>
-        <h1>Финансовый трекер</h1>
-      </Header>
+      <HeaderWrapper>
+        <Header />
+      </HeaderWrapper>
 
-      <Card title='Общий баланс'>
-        <p>100</p>
-      </Card>
-
-      <div className='actions'>
-        <Button variant='success' className='income'>
+      <TransactionsWrapper>
+        <Button variant='success' className='income' size='lg'>
           Доход
         </Button>
-        <Button variant='danger' className='expense'>
+        <Button variant='danger' className='expense' size='lg'>
           Расход
         </Button>
+        <Button className='open-modal' onClick={() => setIsModalOpen(true)} size='lg'>Добавить транзакцию</Button>
+        <AddTransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         <TransactionList />
-      </div>
+      </TransactionsWrapper>
 
-      <Card title='Последние опереации'>
-        <Button className='open-modal' onClick={() => setIsModalOpen(true)}>Добавить транзакцию</Button>
-        <AddTransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}></AddTransactionModal>
-      </Card>
+      <CardWrapper>
+        <Card title='Общий баланс'>
+            <div>balanace</div>
+        </Card>
+      </CardWrapper>
     </DashboardWrapper>
   );
 };

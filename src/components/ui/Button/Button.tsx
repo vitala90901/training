@@ -24,7 +24,7 @@ const StyledButton = styled.button<{
 }>`
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   gap: 8px;
   border: none;
   border-radius: 6px;
@@ -39,17 +39,27 @@ const StyledButton = styled.button<{
         return css`
           background-color: ${theme.colors.danger};
           color: white;
+          &:hover {
+            transform: translateY(4px);
+          }
         `;
       case 'success':
         return css`
           background-color: ${theme.colors.success};
           color: white;
+          &:hover {
+            transform: translateY(4px);
+          }
         `;
       case 'text':
         return css`
           background: transparent;
           color: ${theme.colors.text};
           padding: 0;
+          width: 100%;
+          &:hover {
+            background-color: ${theme.colors.hoverBackground};
+          }
         `;
       default:
         return css`
@@ -90,9 +100,6 @@ const StyledButton = styled.button<{
     `
   }
   
-  &:hover {
-    transform: translateY(4px);
-  }
 `;
 
 export const Button = ({

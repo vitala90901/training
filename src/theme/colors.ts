@@ -5,6 +5,7 @@ export type Colors = {
 	background: string;
   pageBackground: string;
 	text: string;
+  hoverBackground: string;
 };
 
 export const colors: Colors = {
@@ -13,5 +14,6 @@ export const colors: Colors = {
   success: '#6359e9',
   background: '#1d1d41',
   pageBackground: '#141322',
-  text: '#1f2937',
+  text: '#ffffff',
+  hoverBackground: '#6359E9',
 };
