@@ -21,6 +21,7 @@ const StyledButton = styled.button<{
   $variant: ButtonVariant;
   $size: ButtonSize;
   $disabled: boolean;
+  $type: string;
 }>`
   display: inline-flex;
   align-items: center;
@@ -127,7 +128,7 @@ export const Button = ({
   return (
     <StyledButton
       onClick={onClick}
-      type={type}
+      $type={type}
       $variant={variant}
       $size={size}
       $disabled={disabled}

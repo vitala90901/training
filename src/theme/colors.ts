@@ -9,7 +9,7 @@ export type Colors = {
 };
 
 export const colors: Colors = {
-  primary: '#6366f1',
+  primary: '#6359E9',
   danger: '#026f97',
   success: '#6359e9',
   background: '#1d1d41',

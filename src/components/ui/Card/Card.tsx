@@ -1,27 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type CardSize = 'sm' | 'lg';
 
 interface CardProps {
   children: React.ReactNode;
   title?: string;
   className?: string;
+  size?: CardSize;
 };
 
-const StyledCard = styled.div`
-  box-shadow: 0 2px 8px #1D1D41;
-  cursor: pointer;
-  border: 1px solid #6359E9;
+const StyledCard = styled.div<{ $size: CardSize }>`
   padding: 16px;
   margin: 0;
-  width: 350px;
-  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   background-color:rgb(124, 115, 255);
   font-family: ${({ theme }) => theme.typography.fontMain};
   color: ${({ theme }) => theme.colors.text};
   border-radius: 20px;
-  &:hover {
-    box-shadow: 0 6px 24px #1D1D41;
-  }
+
+  ${({ $size, theme }) => {
+    switch($size) {
+      case 'sm':
+        return css`
+          width: 290px;
+          height: 100px;
+          background-color: ${({ theme } ) => theme.colors.background};
+          align-items: center;
+        `;
+      default:
+        return css`
+          width: 350px;
+          height: 200px;
+        `;
+    }
+  }}
 `;
 
 const StyledTitle = styled.h3`
@@ -31,9 +46,9 @@ const StyledTitle = styled.h3`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const Card = ({ children, title, className }: CardProps) => {
+export const Card = ({ children, title, className, size='lg' }: CardProps) => {
   return (
-    <StyledCard className={className}>
+    <StyledCard className={className} $size={size}>
       {title && <StyledTitle>{title}</StyledTitle>}
       {children}
     </StyledCard>

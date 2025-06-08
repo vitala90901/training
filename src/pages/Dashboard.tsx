@@ -5,6 +5,7 @@ import { Card } from '../components/ui/Card/Card';
 import { Button } from '../components/ui/Button/Button';
 import { AddTransactionModal } from '../components/modals/AddTransactionModal';
 import { TransactionList } from '../components/transactions/TransactionList';
+import { FinancialAnalisis } from '../components/financialAnalisis/FinancialAnalisis';
 
 const DashboardWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.pageBackground};
@@ -12,7 +13,7 @@ const DashboardWrapper = styled.div`
   grid-template-columns: 1fr 2fr 1fr;
   grid-auto-rows: minmax(100px, auto);
   grid-template-areas:
-    "header . card"
+    "header greeting card"
     "header transactions card"
     "header transactions .";
   gap: 25px;
@@ -36,6 +37,12 @@ const TransactionsWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   padding: 20px;
   border-radius: 5%;
+  box-sizing: border-box;
+  height: 100%;
+`;
+
+const GreetingWrapper = styled.div`
+  grid-area: greeting;
 `;
 
 const BtnGroup = styled.div`
@@ -61,6 +68,10 @@ export const Dashboard = () => {
         <Header />
       </HeaderWrapper>
 
+      <GreetingWrapper>
+        <FinancialAnalisis />
+      </GreetingWrapper>
+
       <TransactionsWrapper>
         <BtnGroup>
 
@@ -75,7 +86,9 @@ export const Dashboard = () => {
 
           <Button className='open-modal' onClick={() => setIsModalOpen(true)} size='lg'>Добавить транзакцию</Button>
           <AddTransactionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
         </BtnGroup>
+
         <TransactionList />
       </TransactionsWrapper>
 

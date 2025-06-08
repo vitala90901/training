@@ -20,6 +20,7 @@ const StyledTransaction = styled.li<{ $type: string }>`
   border-radius: 1em;
   font-family: ${({ theme }) => theme.typography.fontMain};
   font-size: 18px;
+  transition: all 250ms;
   cursor: pointer;
   ${({ $type }) => {
     switch( $type ) {
@@ -47,7 +48,7 @@ const StyledCategory = styled.p<{ $category: string }>`
   width: 120px;
   }};
 `;
-const StyledDate = styled.div`
+const StyledType = styled.div`
   width: 80px;
   text-align: center;
   color: #fff;
@@ -89,12 +90,12 @@ export const Transaction = ({ category, amount, type, date }: TransactionProps) 
         </IconWrapper>
         {category}
       </StyledCategory>
+      <StyledType>
+        {type === 'expense' ? 'Расход' : 'Доход'}
+      </StyledType>
       <StyledAmount>
         {`${amount} руб`}
       </StyledAmount>
-      <StyledDate>
-        {date.toString()}
-      </StyledDate>
     </StyledTransaction>
   )
 };

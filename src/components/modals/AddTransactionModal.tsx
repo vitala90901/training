@@ -14,11 +14,8 @@ const ModalWrapper = styled.div<{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 500px;
-  width: 500px;
-  background-color: ${({ theme }) => theme.colors.hoverBackground};
-  padding: 40px;
-  border-radius: 10%;
+  height: auto;
+  width: auto;
   ${({ $isOpen }) => {
     if ($isOpen) {
       return css`
@@ -38,9 +35,12 @@ const CloseBtn = styled.button`
   font-size: 30px;
   font-weight: bold;
   color: #1d1d41;
-  position: relative;
-  top: -10px;
-  right: -240px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.text};
+  }
 `;
 
 export const AddTransactionModal = ({ isOpen, onClose }: AddTransictionModalProps) => {

@@ -17,6 +17,11 @@ import {
   MdOutlineAttachMoney,
 } from "react-icons/md";
 
+import {
+  FaArrowTrendDown,
+  FaArrowTrendUp,
+} from "react-icons/fa6";
+
 export const Icons = {
   Header: {
     Dashboard: FaBorderAll,
@@ -34,5 +39,9 @@ export const Icons = {
     Transport: MdOutlineEmojiTransportation,
     Other: MdQuestionMark,
     Income: MdOutlineAttachMoney,
-  }
+  },
+  Financial: {
+    Expense: FaArrowTrendDown,
+    Income: FaArrowTrendUp,
+  },
 };

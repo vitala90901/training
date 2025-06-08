@@ -4,6 +4,12 @@ import { selectAllTransactions } from "../../slices/transactionsSlice";
 import { Transaction } from "./Transaction";
 import styled from "styled-components";
 
+const StyledList = styled.ul`
+    padding: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+`;
+
 export const TransactionList = () => {
   const transactions = useSelector(selectAllTransactions);
 
@@ -14,10 +20,6 @@ export const TransactionList = () => {
       });
     return result;
   }
-
-  const StyledList = styled.ul`
-    padding: 0;
-  `;
 
   return (
     <StyledList>
